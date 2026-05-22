@@ -1,6 +1,6 @@
 // Google Apps Script — pegar en Extensions > Apps Script del Google Sheet
 // Hoja debe tener estos encabezados en fila 1:
-// Fecha | Versión | Nombre | Asistencia | Pases | Signo | Signo Invitado | Mensaje
+// Fecha | Versión | Nombre | Asistencia | Pases | Signo | Signos Invitados | Mensaje
 
 function doPost(e) {
   try {
@@ -14,7 +14,7 @@ function doPost(e) {
       data.asistencia    || '',
       data.pases         || '',
       data.signo         || '',
-      data.signoInvitado || '',
+      data.signosInvitados || '',
       data.mensaje       || '',
     ]);
 

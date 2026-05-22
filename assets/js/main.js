@@ -66,6 +66,35 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 });
 
 /* ============================================================
+   SIGNOS ZODIACALES DINÁMICOS POR NÚMERO DE PASES
+   ============================================================ */
+const ZODIACOS = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+
+function buildCompanionFields(numPases) {
+  const container = document.getElementById('companions-container');
+  if (!container) return;
+  container.innerHTML = '';
+  for (let i = 1; i < numPases; i++) {
+    const label = numPases > 2 ? `Signo zodiacal del acompañante ${i}` : 'Signo zodiacal de tu acompañante';
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+      <label class="form-label" for="signoInvitado${i}">${label} (opcional)</label>
+      <select class="form-control" id="signoInvitado${i}" name="signoInvitado${i}">
+        <option value="">— Seleccionar —</option>
+        ${ZODIACOS.map(z => `<option>${z}</option>`).join('')}
+      </select>`;
+    container.appendChild(div);
+  }
+}
+
+const pasesSelect = document.getElementById('pases');
+if (pasesSelect) {
+  pasesSelect.addEventListener('change', () => buildCompanionFields(parseInt(pasesSelect.value)));
+  buildCompanionFields(parseInt(pasesSelect.value));
+}
+
+/* ============================================================
    RSVP — Google Sheets via Apps Script
    Instrucciones de configuración:
    1. Crea un Google Sheet: "RSVP – Boda Mony & Omar"
@@ -87,14 +116,21 @@ if (form) {
     btn.disabled = true;
     btn.textContent = 'Enviando...';
 
+    const numPases = parseInt(form.pases.value);
+    const signos = [];
+    for (let i = 1; i < numPases; i++) {
+      const el = form[`signoInvitado${i}`];
+      signos.push(el?.value || '');
+    }
+
     const data = {
-      version:       form.version.value,
-      nombre:        form.nombre.value.trim(),
-      asistencia:    form.asistencia.value,
-      pases:         form.pases.value,
-      signo:         form.signo.value,
-      signoInvitado: form.signoInvitado?.value || '',
-      mensaje:       form.mensaje.value.trim(),
+      version:         form.version.value,
+      nombre:          form.nombre.value.trim(),
+      asistencia:      form.asistencia.value,
+      pases:           form.pases.value,
+      signo:           form.signo.value,
+      signosInvitados: signos.join(' | '),
+      mensaje:         form.mensaje.value.trim(),
     };
 
     try {
