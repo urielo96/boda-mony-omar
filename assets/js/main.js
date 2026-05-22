@@ -88,6 +88,7 @@ if (form) {
     btn.textContent = 'Enviando...';
 
     const data = {
+      version:       form.version.value,
       nombre:        form.nombre.value.trim(),
       asistencia:    form.asistencia.value,
       pases:         form.pases.value,
