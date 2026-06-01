@@ -1,6 +1,6 @@
 // Google Apps Script — pegar en Extensions > Apps Script del Google Sheet
-// Hoja debe tener estos encabezados en fila 1:
-// Fecha | Versión | Nombre | Asistencia | Pases | Signo | Signos Invitados | Mensaje
+// Encabezados fila 1:
+// Fecha | Versión | Nombre | Asistencia | Pases | Mesa | Signos (todos) | Mensaje
 
 function doPost(e) {
   try {
@@ -9,13 +9,13 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }),
-      data.version       || '',
-      data.nombre        || '',
-      data.asistencia    || '',
-      data.pases         || '',
-      data.signo         || '',
-      data.signosInvitados || '',
-      data.mensaje       || '',
+      data.version    || '',
+      data.nombre     || '',
+      data.asistencia || '',
+      data.pases      || '',
+      data.mesa       || '',
+      data.signos     || '',
+      data.mensaje    || '',
     ]);
 
     return ContentService

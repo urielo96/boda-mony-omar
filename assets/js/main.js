@@ -169,20 +169,20 @@ if (form) {
     btn.textContent = 'Enviando...';
 
     const numPases = parseInt(form.pases.value);
-    const signosAcomp = [];
+    const todosLosSignos = [];
+    todosLosSignos.push(document.getElementById('signo')?.value || '');
     for (let i = 1; i < numPases; i++) {
-      const el = form[`signoInvitado${i}`];
-      signosAcomp.push(el?.value || '');
+      todosLosSignos.push(document.getElementById(`signoInvitado${i}`)?.value || '');
     }
 
     const data = {
-      version:         form.version.value,
-      nombre:          form.nombre.value,
-      asistencia:      form.asistencia.value,
-      pases:           form.pases.value,
-      signo:           document.getElementById('signo')?.value || '',
-      signosInvitados: signosAcomp.join(' | '),
-      mensaje:         form.mensaje.value.trim(),
+      version:   form.version.value,
+      nombre:    form.nombre.value,
+      asistencia: form.asistencia.value,
+      pases:     form.pases.value,
+      mesa:      document.getElementById('mesa')?.value || '',
+      signos:    todosLosSignos.join(' | '),
+      mensaje:   form.mensaje.value.trim(),
     };
 
     try {
