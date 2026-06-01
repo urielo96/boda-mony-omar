@@ -62,7 +62,7 @@
 
   <!-- ===================== CORTEJO ===================== -->
   <section class="section">
-    <div class="divider fade-in"><span class="divider-icon">🌹</span></div>
+    <div class="divider fade-in"><span class="divider-icon">🌷</span></div>
     <h2 class="section-title fade-in">Familia &amp; Cortejo</h2>
     <p class="section-subtitle fade-in">Quienes nos acompañan en este camino</p>
 
@@ -126,7 +126,7 @@
   <!-- ===================== PROGRAMA ===================== -->
   <section class="section section--full programa">
     <div style="max-width:900px;margin:0 auto;padding:0 24px">
-      <div class="divider fade-in"><span class="divider-icon">🌹</span></div>
+      <div class="divider fade-in"><span class="divider-icon">🌷</span></div>
       <h2 class="section-title fade-in">Programa</h2>
       <p class="section-subtitle fade-in">Tu fin de semana perfecto</p>
 
@@ -267,7 +267,7 @@
 
   <!-- ===================== LUGAR ===================== -->
   <section class="section lugar">
-    <div class="divider fade-in"><span class="divider-icon">🌹</span></div>
+    <div class="divider fade-in"><span class="divider-icon">🌷</span></div>
     <h2 class="section-title fade-in">El Lugar</h2>
     <p class="section-subtitle fade-in">Dónde nos vemos</p>
 
@@ -301,7 +301,7 @@
   <!-- ===================== GALERÍA ===================== -->
   <section class="galeria section--full fade-in">
     <div class="galeria__inner">
-      <div class="divider"><span class="divider-icon">🌹</span></div>
+      <div class="divider"><span class="divider-icon">🌷</span></div>
       <h2 class="section-title">Nuestra Historia</h2>
       <p class="section-subtitle">Ámsterdam · Enero 2025</p>
 
@@ -320,7 +320,7 @@
 
   <!-- ===================== REGALOS ===================== -->
   <section class="section regalos">
-    <div class="divider fade-in"><span class="divider-icon">🌹</span></div>
+    <div class="divider fade-in"><span class="divider-icon">🌷</span></div>
     <h2 class="section-title fade-in">Mesa de Regalos</h2>
     <p class="section-subtitle fade-in">El regalo más valioso es tu presencia</p>
 
@@ -364,7 +364,7 @@
 
   <!-- ===================== RSVP ===================== -->
   <section class="section rsvp">
-    <div class="divider fade-in"><span class="divider-icon">🌹</span></div>
+    <div class="divider fade-in"><span class="divider-icon">🌷</span></div>
     <h2 class="section-title fade-in">Confirmación</h2>
     <p class="section-subtitle fade-in">Confirma tu asistencia antes del 1 de Octubre</p>
 
@@ -372,8 +372,15 @@
       <input type="hidden" name="version" value="VIP (3 días)" />
 
       <div class="form-group">
-        <label class="form-label" for="nombre">Nombre completo</label>
-        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+        <label class="form-label">Nombre</label>
+        <p class="pases-badge" id="nombre-display"></p>
+        <input type="hidden" id="nombre" name="nombre" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pases asignados</label>
+        <p class="pases-badge" id="pases-display"></p>
+        <input type="hidden" id="pases" name="pases" />
       </div>
 
       <div class="form-group">
@@ -386,27 +393,6 @@
             <input type="radio" name="asistencia" value="No" /> No podré asistir 😢
           </label>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="pases">Número de pases</label>
-        <select class="form-control" id="pases" name="pases">
-          <option value="1">1 persona</option>
-          <option value="2">2 personas</option>
-          <option value="3">3 personas</option>
-          <option value="4">4 personas</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="signo">Tu signo zodiacal</label>
-        <select class="form-control" id="signo" name="signo">
-          <option value="">— Seleccionar —</option>
-          <option>Aries</option><option>Tauro</option><option>Géminis</option>
-          <option>Cáncer</option><option>Leo</option><option>Virgo</option>
-          <option>Libra</option><option>Escorpio</option><option>Sagitario</option>
-          <option>Capricornio</option><option>Acuario</option><option>Piscis</option>
-        </select>
       </div>
 
       <div id="companions-container"></div>
@@ -423,7 +409,7 @@
     </form>
 
     <div id="rsvp-success" class="rsvp-success">
-      <div class="rsvp-success__icon">🌹</div>
+      <div class="rsvp-success__icon">🌷</div>
       <h3 class="rsvp-success__title">¡Gracias!</h3>
       <p class="rsvp-success__text">Tu confirmación fue recibida. Nos vemos el 24 de octubre.</p>
     </div>
@@ -433,7 +419,7 @@
   <!-- ===================== REDES ===================== -->
   <section class="redes fade-in">
     <div class="divider" style="--rosa-palo:rgba(255,255,255,0.4)">
-      <span class="divider-icon" style="color:var(--blush)">🌹</span>
+      <span class="divider-icon" style="color:var(--blush)">🌷</span>
     </div>
     <h2 class="section-title" style="color:var(--blush)">Etiquétanos</h2>
     <p class="section-subtitle">Comparte este momento con nosotros</p>
