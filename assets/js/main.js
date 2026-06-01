@@ -66,14 +66,28 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 });
 
 /* ============================================================
-   SIGNOS ZODIACALES DINÁMICOS POR NÚMERO DE PASES
+   PASES ASIGNADOS + SIGNOS ZODIACALES
+   Los pases y nombre vienen del link: ?nombre=Juan&pases=2
    ============================================================ */
 const ZODIACOS = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
 
-function buildCompanionFields(numPases) {
+function buildZodiacFields(numPases) {
   const container = document.getElementById('companions-container');
   if (!container) return;
   container.innerHTML = '';
+
+  // Signo del titular
+  const divTitular = document.createElement('div');
+  divTitular.className = 'form-group';
+  divTitular.innerHTML = `
+    <label class="form-label" for="signo">Tu signo zodiacal</label>
+    <select class="form-control" id="signo" name="signo">
+      <option value="">— Seleccionar —</option>
+      ${ZODIACOS.map(z => `<option>${z}</option>`).join('')}
+    </select>`;
+  container.appendChild(divTitular);
+
+  // Signos de acompañantes
   for (let i = 1; i < numPases; i++) {
     const label = numPases > 2 ? `Signo zodiacal del acompañante ${i}` : 'Signo zodiacal de tu acompañante';
     const div = document.createElement('div');
@@ -88,11 +102,29 @@ function buildCompanionFields(numPases) {
   }
 }
 
-const pasesSelect = document.getElementById('pases');
-if (pasesSelect) {
-  pasesSelect.addEventListener('change', () => buildCompanionFields(parseInt(pasesSelect.value)));
-  buildCompanionFields(parseInt(pasesSelect.value));
+// Leer parámetros del link
+const params      = new URLSearchParams(window.location.search);
+const nombreParam = params.get('nombre') || '';
+const pasesParam  = Math.min(Math.max(parseInt(params.get('pases')) || 1, 1), 6);
+
+// Mostrar nombre asignado
+const nombreDisplay = document.getElementById('nombre-display');
+const nombreHidden  = document.getElementById('nombre');
+if (nombreDisplay && nombreHidden) {
+  nombreDisplay.textContent = nombreParam || '—';
+  nombreHidden.value = nombreParam;
 }
+
+// Mostrar pases asignados
+const pasesDisplay = document.getElementById('pases-display');
+const pasesHidden  = document.getElementById('pases');
+if (pasesDisplay && pasesHidden) {
+  pasesDisplay.textContent = pasesParam + (pasesParam === 1 ? ' persona' : ' personas');
+  pasesHidden.value = pasesParam;
+}
+
+// Construir campos de signo según pases asignados
+buildZodiacFields(pasesParam);
 
 /* ============================================================
    RSVP — Google Sheets via Apps Script
@@ -117,19 +149,19 @@ if (form) {
     btn.textContent = 'Enviando...';
 
     const numPases = parseInt(form.pases.value);
-    const signos = [];
+    const signosAcomp = [];
     for (let i = 1; i < numPases; i++) {
       const el = form[`signoInvitado${i}`];
-      signos.push(el?.value || '');
+      signosAcomp.push(el?.value || '');
     }
 
     const data = {
       version:         form.version.value,
-      nombre:          form.nombre.value.trim(),
+      nombre:          form.nombre.value,
       asistencia:      form.asistencia.value,
       pases:           form.pases.value,
-      signo:           form.signo.value,
-      signosInvitados: signos.join(' | '),
+      signo:           document.getElementById('signo')?.value || '',
+      signosInvitados: signosAcomp.join(' | '),
       mensaje:         form.mensaje.value.trim(),
     };
 

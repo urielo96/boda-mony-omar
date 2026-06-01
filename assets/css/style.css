@@ -651,6 +651,17 @@ a   { color: inherit; text-decoration: none; }
   color: var(--rosa-canela);
 }
 
+.pases-badge {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--borgonha);
+  background: var(--crema-2);
+  border: 1.5px solid var(--blush);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin: 0;
+}
+
 .form-control {
   background: var(--blanco);
   border: 1.5px solid var(--blush);
