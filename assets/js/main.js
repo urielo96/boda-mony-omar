@@ -139,8 +139,11 @@ if (mesaParam) {
 if (saludoParam) {
   const saludoSection = document.getElementById('saludo-section');
   const saludoTexto   = document.getElementById('saludo-texto');
-  if (saludoSection) saludoSection.style.display = 'block';
-  if (saludoTexto)   saludoTexto.textContent = saludoParam;
+  if (saludoSection) {
+    saludoSection.style.display = 'block';
+    saludoSection.classList.add('visible');
+  }
+  if (saludoTexto) saludoTexto.textContent = saludoParam;
 }
 
 // Construir campos de signo según pases asignados
