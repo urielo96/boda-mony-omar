@@ -107,7 +107,6 @@ const params        = new URLSearchParams(window.location.search);
 const nombreParam   = (params.get('nombre') || '').replace(/_/g, ' ');
 const pasesParam    = Math.min(Math.max(parseInt(params.get('pases')) || 1, 1), 6);
 const mesaParam     = params.get('mesa') || '';
-const saludoParam   = (params.get('saludo') || '').replace(/_/g, ' ');
 
 // Mostrar nombre asignado
 const nombreDisplay = document.getElementById('nombre-display');
@@ -135,16 +134,6 @@ if (mesaParam) {
   if (mesaHidden)  mesaHidden.value = mesaParam;
 }
 
-// Mostrar saludo personal de los novios
-if (saludoParam) {
-  const saludoSection = document.getElementById('saludo-section');
-  const saludoTexto   = document.getElementById('saludo-texto');
-  if (saludoSection) {
-    saludoSection.style.display = 'block';
-    saludoSection.classList.add('visible');
-  }
-  if (saludoTexto) saludoTexto.textContent = saludoParam;
-}
 
 // Construir campos de signo según pases asignados
 buildZodiacFields(pasesParam);
